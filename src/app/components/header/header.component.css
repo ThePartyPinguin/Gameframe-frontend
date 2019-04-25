@@ -1,0 +1,26 @@
+.navbar-container{
+  width: 100%;
+  background-color: var(--bg-panel);
+}
+
+#logo-image{
+  max-width: 250px;
+}
+
+.btn:focus,.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.btn-primary{
+  background-color: var(--highlight) !important;
+  border-color: var(--highlight) !important;
+}
+
+hr{
+  background-color: var(--subtle-highlight);
+}
+
+.nav-link{
+  color: var(--h1-heading) !important;
+}

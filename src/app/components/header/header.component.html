@@ -1,0 +1,35 @@
+<div class="container">
+  <nav class="navbar navbar-expand-md navbar-light bg-white sticky-top">
+    <a class="navbar-brand pl-2" [routerLink]="['']">
+      <img id="logo-image" src="assets/logo/Game-frame-final-transparant.png" alt="logo-image">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto"></ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link px-3" [routerLink]="['/']">Home<span class="sr-only">(current)</span><hr class="d-lg-none"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" [routerLink]="['/timeline']">About<span class="sr-only">(current)</span><hr class="d-lg-none"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" [routerLink]="['/']">Forum<span class="sr-only">(current)</span><hr class="d-lg-none"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" [routerLink]="['/login']">Login<span class="sr-only">(current)</span><hr class="d-lg-none"></a>
+        </li>
+        <li class="nav-item inline px-3 pr-5">
+          <a class="btn btn-primary" [routerLink]="['/register']">
+            Register account
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
