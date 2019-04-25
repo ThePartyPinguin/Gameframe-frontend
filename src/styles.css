@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+html{
+
+  --bg: #f5f6fa;
+  --bg-panel: #dcdde1;
+
+  --h1-heading: #0097e6;
+  --h2-heading: #40739e;
+
+  --highlight: #0097e6;
+  --subtle-highlight: #dcdde1;
+
+  --main-text: #353b48;
+
+  background-color: var(--bg);
+  padding: 0 !important;
+  margin: 0 !important;
+}
