@@ -35,9 +35,6 @@ export class LoginService {
     )
   }
 
-
-
->>>>>>> feature/auth/login
   logoutUser(){
     window.localStorage.removeItem(environment.user_token);
     this.router.navigateByUrl('');
