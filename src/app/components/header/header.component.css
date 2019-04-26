@@ -8,6 +8,10 @@
   max-width: 275px;
 }
 
+#logo-image-mobile{
+  width: 250px !important;
+}
+
 .btn:focus,.btn:active {
   outline: none !important;
   box-shadow: none;
