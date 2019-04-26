@@ -6,13 +6,13 @@ html{
   --bg: #f5f6fa;
   --bg-panel: #dcdde1;
 
-  --h1-heading: #0097e6;
+  --h1-heading: #0096E5;
   --h2-heading: #40739e;
 
   --highlight: #0097e6;
   --subtle-highlight: #dcdde1;
 
-  --main-text: #353b48;
+  --main-text: #333333;
 
   background-color: var(--bg);
   padding: 0 !important;
@@ -20,6 +20,7 @@ html{
 }
 
 h1, h2, h3, h4{
+  color: var(--main-text);
   font-family: moon-bold, sans-serif !important;
 }
 
