@@ -28,7 +28,7 @@ COPY ./ ./
 #RUN npm run test-headless
 
 # Build the application.
-RUN npm run build --prod
+RUN npm run build-production
 
 # Get the default NGINX Alpine image.
 FROM nginx:alpine
