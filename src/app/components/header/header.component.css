@@ -3,8 +3,9 @@
   background-color: var(--bg-panel);
 }
 
-#logo-image{
-  max-width: 250px;
+.navbar-brand img{
+  width: 300px;
+  max-width: 275px;
 }
 
 .btn:focus,.btn:active {
