@@ -2,11 +2,8 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
-<<<<<<< HEAD
-=======
 import {ProfileService} from '../profile/profile.service';
 import {LoginResponseDto} from '../../models/dto/login-response-dto/login-response-dto';
->>>>>>> feature/auth/login
 
 @Injectable({
   providedIn: 'root'
