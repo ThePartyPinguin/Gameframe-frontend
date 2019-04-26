@@ -28,7 +28,7 @@ COPY ./ ./
 #RUN npm run test-headless
 
 # Build the application.
-RUN npm run build-production
+RUN npm run build --prod
 
 # Get the default NGINX Alpine image.
 FROM nginx:alpine
@@ -37,4 +37,4 @@ FROM nginx:alpine
 COPY --from=node /app/nginx.conf /etc/nginx/nginx.conf
 
 # Copy over the application files to the NGINX static HTML folder.
-COPY --from=node /app/dist/nld-frontend /usr/share/nginx/html
+COPY --from=node /app/dist/Gameframe-Frontend /usr/share/nginx/html
