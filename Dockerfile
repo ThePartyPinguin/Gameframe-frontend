@@ -25,7 +25,7 @@ RUN npm install
 COPY ./ ./
 
 # Run the application's tests.
-RUN npm run test-headless
+#RUN npm run test-headless
 
 # Build the application.
 RUN npm run build-production
