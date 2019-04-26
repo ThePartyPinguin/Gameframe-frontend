@@ -19,6 +19,16 @@ html{
   margin: 0 !important;
 }
 
-.jumbotron{
-  background-color: var(--subtle-highlight) !important;
+h1, h2, h3, h4{
+  font-family: moon-bold, sans-serif !important;
+}
+
+@font-face {
+  font-family: moon-bold;
+  src: url("assets/fonts/Moon-Bold.otf");
+}
+
+@font-face {
+  font-family: moon-light;
+  src: url("assets/fonts/Moon-Light.otf");
 }
