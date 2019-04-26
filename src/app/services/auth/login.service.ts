@@ -28,6 +28,7 @@ export class LoginService {
         }
 
         window.localStorage.setItem(environment.user_token, "Bearer " + response.body.token);
+        window.localStorage.setItem(environment.user_id, "" + response.body.userId);
 
         this.profileService.getProfile();
       }
