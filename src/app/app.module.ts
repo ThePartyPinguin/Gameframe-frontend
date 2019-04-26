@@ -9,6 +9,7 @@ import { LandingComponent } from './components/landing/landing.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { RegisterComponent } from './components/auth/register/register.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

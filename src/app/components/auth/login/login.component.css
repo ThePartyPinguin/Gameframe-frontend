@@ -5,3 +5,16 @@ label{
 h3{
   color: var(--h1-heading) !important;
 }
+
+input[type='submit']{
+  background-color: var(--highlight);
+}
+
+#register-link .text-info{
+   color: var(--highlight) !important;
+   cursor: pointer !important;
+ }
+
+#register-link .text-info:hover{
+  text-decoration: underline;
+}
