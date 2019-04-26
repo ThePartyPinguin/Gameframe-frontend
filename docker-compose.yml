@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  gameframe-frontend:
+    build: .
+    container_name: gameframe-frontend
+    ports:
+      - "8080:80"
+    expose:
+      - "80"
+    networks:
+      - default
+      - gameframe-internal-network
+    restart: always
+
+networks:
+  gameframe-internal-network:
+    external: true
