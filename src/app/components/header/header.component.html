@@ -1,7 +1,12 @@
 <div class="container">
   <nav class="navbar navbar-expand-md navbar-light bg-white sticky-top">
-    <a class="navbar-brand pl-2" [routerLink]="['']">
+
+    <a class="d-none d-xl-block navbar-brand pl-2" [routerLink]="['']">
       <img id="logo-image" src="assets/logo/Game-frame-logo.svg" alt="logo-image">
+    </a>
+
+    <a class="d-lg-block d-xl-none navbar-brand pl-2" [routerLink]="['']">
+      <img id="logo-image-mobile" src="assets/logo/Game-frame-logo.svg" alt="logo-image">
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
