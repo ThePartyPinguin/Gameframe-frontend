@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
+import {LoginService} from '../../../services/auth/login.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginSubmit: boolean;
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
       this.loginForm = new FormGroup({
@@ -38,8 +39,7 @@ export class LoginComponent implements OnInit {
       return;
     }
 
-    console.log('login' + environment.production);
-
+    this.loginService.loginUser(this.loginFormControls.loginUsername.value, this.loginFormControls.password.value);
   }
 
   get loginFormControls(){

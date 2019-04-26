@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  apiUrl: "api.overloaded-game.com",
-  user_token: 'user-token'
+  apiUrl: "http://localhost:8000",
+  user_token: 'user-token',
+  user_id: 'user-id'
 };
 
 /*
