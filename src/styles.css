@@ -17,12 +17,20 @@ html{
   background-color: var(--bg);
   padding: 0 !important;
   margin: 0 !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
 }
 
 h1, h2, h3, h4{
   color: var(--main-text);
   font-family: moon-bold, sans-serif !important;
 }
+
+/*img {*/
+/*  display: block;*/
+/*  max-width: 75%;*/
+/*  height: auto;*/
+/*}*/
 
 @font-face {
   font-family: moon-bold;
