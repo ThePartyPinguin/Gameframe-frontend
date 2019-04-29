@@ -10,7 +10,8 @@ const routes: Routes = [
   {path: 'timeline', component: LandingComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'profile', component: UserProfileComponent}
+  {path: 'profile', component: UserProfileComponent},
+  {path: 'profile/:username', component: UserProfileComponent}
 ];
 
 @NgModule({
