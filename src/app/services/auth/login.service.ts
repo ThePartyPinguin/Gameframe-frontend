@@ -12,7 +12,7 @@ export class LoginService {
 
   apiUrl: string;
 
-  constructor(private http: HttpClient, private router: Router, private profileService : ProfileService) {
+  constructor(private http: HttpClient, private router: Router) {
     this.apiUrl = environment.apiUrl
   }
 
@@ -30,7 +30,7 @@ export class LoginService {
         window.localStorage.setItem(environment.user_token, "Bearer " + response.body.token);
         window.localStorage.setItem(environment.user_id, "" + response.body.userId);
 
-        this.profileService.getProfile();
+        this.router.navigateByUrl('/profile');
       }
     )
   }
