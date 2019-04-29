@@ -16,10 +16,10 @@ export class AuthHeaderResponseInterceptor implements HttpInterceptor {
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
 
-          if(event.headers.has('x-user-token')){
+          if(event.headers.has(environment.user_token_header)){
             let token = event.headers.get('x-user-token')
 
-            window.localStorage.setItem(environment.user_token, token)
+            window.localStorage.setItem(environment.user_token_header, token)
             console.log("got new token!!")
           }
 
