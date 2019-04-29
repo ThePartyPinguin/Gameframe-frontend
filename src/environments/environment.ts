@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   apiUrl: "http://localhost:8000",
   user_token: 'user-token',
+  user_token_header: 'x-user-token',
   user_id: 'user-id'
 };
 
