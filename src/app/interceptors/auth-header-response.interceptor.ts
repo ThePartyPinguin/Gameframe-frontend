@@ -20,11 +20,7 @@ export class AuthHeaderResponseInterceptor implements HttpInterceptor {
             let token = event.headers.get('x-user-token')
 
             window.localStorage.setItem(environment.user_token, token)
-            console.log("got new token!!")
           }
-
-
-          console.log('event--->>>', event);
         }
         return event;
       })
