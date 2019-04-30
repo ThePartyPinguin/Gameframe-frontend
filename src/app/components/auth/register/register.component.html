@@ -6,12 +6,15 @@
           <h2>Register</h2>
         </div>
       </div>
-      <form>
+      <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
         <div class="row justify-content-center">
           <div class="col-sm-10">
             <div class="form-group">
               <label for="username">Username</label>
-              <input type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Username..">
+              <input formControlName="usernameControl" type="text" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Username.." autofocus [ngClass]="{ 'is-invalid': registerSubmit && formControls.usernameControl.errors }">
+              <div *ngIf="registerSubmit && !formControls.usernameControl.valid" class="invalid-feedback">
+                <div *ngIf="formControls.usernameControl.errors.required">Username is required</div>
+              </div>
             </div>
           </div>
         </div>
@@ -19,7 +22,11 @@
           <div class="col-sm-10">
             <div class="form-group">
               <label for="email">Email address</label>
-              <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email..">
+              <input formControlName="emailControl"  type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Email.." [ngClass]="{ 'is-invalid': registerSubmit && formControls.emailControl.errors }">
+              <div *ngIf="registerSubmit && !formControls.emailControl.valid" class="invalid-feedback">
+                <div *ngIf="formControls.emailControl.errors.required">Email is required</div>
+                <div *ngIf="formControls.emailControl.errors.email">Not a valid email</div>
+              </div>
               <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone.</small>
             </div>
           </div>
@@ -28,7 +35,11 @@
           <div class="col-sm-10">
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Password..">
+              <input formControlName="passwordControl"  type="password" class="form-control" id="password" placeholder="Password.." [ngClass]="{ 'is-invalid': registerSubmit && formControls.passwordControl.errors }">
+              <div *ngIf="registerSubmit && !formControls.passwordControl.valid" class="invalid-feedback">
+                <div *ngIf="formControls.passwordControl.errors.required">Password is required</div>
+                <div *ngIf="formControls.passwordControl.errors.minlength">Password needs to consist fo 6 character minimum</div>
+              </div>
             </div>
           </div>
         </div>
@@ -36,8 +47,20 @@
           <div class="col-sm-10">
             <div class="form-group">
               <label for="passwordRepeat">Repeat password</label>
-              <input type="password" class="form-control" id="passwordRepeat" placeholder="Repeat password..">
+              <input formControlName="passwordRepeatControl" type="password" class="form-control" id="passwordRepeat" placeholder="Repeat password.." [ngClass]="{ 'is-invalid': registerSubmit && formControls.passwordRepeatControl.errors }">
+              <div *ngIf="registerSubmit && !formControls.passwordRepeatControl.valid" class="invalid-feedback">
+                <div *ngIf="formControls.passwordRepeatControl.errors.required">Password is required</div>
+                <div *ngIf="formControls.passwordRepeatControl.errors.minlength">Password needs to consist fo 6 character minimum</div>
+                <div *ngIf="formControls.passwordRepeatControl.errors.mustMatch">Passwords must match</div>
+              </div>
             </div>
+          </div>
+        </div>
+        <div class="row justify-content-center" *ngIf="noPasswordMatch">
+          <div class="col-sm-10 text-danger">
+            <p>
+              Passwords don't match up
+            </p>
           </div>
         </div>
         <div class="row justify-content-center">
