@@ -16,6 +16,7 @@ import {LoginService} from './services/auth/login.service';
 import {ProfileService} from './services/profile/profile.service';
 import {AuthHeader} from './interceptors/auth-header.interceptor';
 import {AuthHeaderResponseInterceptor} from './interceptors/auth-header-response.interceptor';
+import {RegisterService} from './services/auth/register.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import {AuthHeaderResponseInterceptor} from './interceptors/auth-header-response
     LandingComponent,
     LoginComponent,
     RegisterComponent,
-    UserProfileComponent
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +38,7 @@ import {AuthHeaderResponseInterceptor} from './interceptors/auth-header-response
   ],
   providers: [
     LoginService,
+    RegisterService,
     ProfileService,
     {
       provide: HTTP_INTERCEPTORS,
