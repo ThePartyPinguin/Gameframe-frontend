@@ -17,7 +17,10 @@ html{
   background-color: var(--bg);
   padding: 0 !important;
   margin: 0 !important;
-  min-width: 100% !important;
+}
+
+body{
+  /*min-width: 100% !important;*/
   min-height: 100% !important;
 }
 
