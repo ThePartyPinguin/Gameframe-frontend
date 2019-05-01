@@ -17,6 +17,7 @@ import {ProfileService} from './services/profile/profile.service';
 import {AuthHeader} from './interceptors/auth-header.interceptor';
 import {AuthHeaderResponseInterceptor} from './interceptors/auth-header-response.interceptor';
 import {RegisterService} from './services/auth/register.service';
+import { LoaderComponent } from './components/helpers/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {RegisterService} from './services/auth/register.service';
     LoginComponent,
     RegisterComponent,
     UserProfileComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
