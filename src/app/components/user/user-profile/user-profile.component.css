@@ -39,22 +39,26 @@
   height: auto;
   max-height: 300px;
   top: 115px;
-  position: absolute;
 }
 
 
 #profile-wrapper{
-  margin-top: 25vh;
+  /*margin-top: 2vh;*/
   transform: translateY(-1px);
   background-color: rgba(255,255,255,0.5);
 
 }
 
 #profile-info{
-  padding-top: 50px;
+  /*padding-top: 50px;*/
 }
 
 #user-name-tag{
   /*padding-top: 15px;*/
   margin-bottom: 20px;
+  background-color: var(--highlight);
+}
+
+#input-bio{
+  resize: none;
 }

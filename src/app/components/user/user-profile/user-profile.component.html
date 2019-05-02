@@ -1,114 +1,129 @@
-<div id="profile-banner" class="container-fluid">
+
+<div *ngIf="!profileLoaded" class="container-fluid">
+  <app-loader [loadingText]="'Loading profile...'"></app-loader>
+</div>
+
+
+<div *ngIf="profileLoaded" id="profile-banner" class="container-fluid">
   <div class="row">
     <img src="assets/profile/default-profile-banner-grey.png" class="img-fluid mx-auto" alt="Responsive image">
   </div>
 </div>
-<div id="profile-wrapper" class="container">
+<div *ngIf="profileLoaded" id="profile-wrapper" class="container">
   <div id="profile-info">
-    <div id="user-name-tag" class="row">
-      <div class="col-sm-10"><h1>{{userProfile.user.userName}}</h1></div>
+    <div id="user-name-tag" class="row justify-content-sm-center">
+      <div class="col pt-2"><h2>@{{userProfile.user.userName}}</h2></div>
     </div>
     <div class="row">
-      <div class="col-sm-3"><!--left col-->
-
+      <div class="col-sm-3">
 
         <div class="text-center">
           <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
           <h6>Upload a different photo...</h6>
           <input type="file" class="text-center center-block file-upload">
         </div><br>
-
-
-        <div class="panel panel-default">
-          <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
-          <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
-        </div>
-
-
         <ul class="list-group">
-          <li class="list-group-item text-muted">Website <i class="fa fa-dashboard fa-1x"></i></li>
-          <li class="list-group-item text-right"><a href="http://bootnipets.com">bootnipets.com</a></li>
+          <li class="list-group-item text-muted text-center">Website <i class="fa fa-dashboard fa-1x"></i></li>
+          <li class="list-group-item text-center" (click)="goToUserWebsite()">{{userProfile.profile.website}}</li>
         </ul>
 
-<!--        <div class="panel panel-default">-->
-<!--          <div class="panel-heading">Social Media</div>-->
-<!--          <div class="panel-body">-->
-<!--            <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i> <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>-->
-<!--          </div>-->
-<!--        </div>-->
-
       </div><!--/col-3-->
-      <div class="col-sm-9">
-        <div class="tab-content">
-          <div class="tab-pane active" id="home">
-            <form class="form"id="registrationForm">
-              <div class="form-group">
 
-                <div class="col-xs-6">
-                  <label for="first_name"><h4>First name</h4></label>
-                  <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+
+      <div class="col-sm-9 mt-3 mb-5" *ngIf="!editMode">
+        <div class="row justify-content-center" *ngIf="privateProfile && !editMode">
+          <input type="button" class="btn btn-primary" value="Edit profile" (click)="openEditMode()">
+        </div>
+        <div class="row mt-2">
+          <div class="col-auto">
+            <p>Username</p>
+            @{{userProfile.user.userName}}
+          </div>
+          <div class="col-auto">
+            <p>Full name</p>
+            {{userProfile.user.fullName}}
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-auto">
+            <p>Email</p>
+            {{userProfile.user.email}}
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-auto">
+            <p>Location</p>
+            {{userProfile.profile.location}}
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-auto">
+            <p>Bio</p>
+            {{userProfile.profile.bio}}
+          </div>
+        </div>
+      </div>
+
+
+<!-- panel for edit mode, only active on private profile and in edit mode-->
+      <div class="col-sm-9" *ngIf="privateProfile && editMode">
+          <div class="tab-pane active">
+            <form [formGroup]="updateProfileForm" class="form" id="profile-form" (ngSubmit)="saveEdit()">
+              <div class="row justify-content-sm-center">
+                <div class="col-md-auto col-lg">
+                  <div class="form-group col-auto">
+                    <label for="input-username">Username</label>
+                    <input formControlName="usernameControl" type="text" class="form-control" id="input-username" placeholder="{{userProfile.user.userName}}">
+                  </div>
+
+                  <div class="form-group col-auto">
+                    <label for="input-fullname">Full name</label>
+                    <input formControlName="fullNameControl" type="text" class="form-control" id="input-fullname" placeholder="{{userProfile.user.fullName !== '' ? '## Full name not specified ##': userProfile.user.fullName }}">
+                  </div>
+
+                  <div class="form-group col-auto">
+                    <label for="input-email">Email</label>
+                    <input formControlName="emailControl" type="text" class="form-control" id="input-email" placeholder="{{userProfile.user.email}}">
+                  </div>
+                </div>
+
+                <div class="col-md-auto col-lg">
+                  <div class="form-group col-auto">
+                    <label for="input-location">Location</label>
+                    <input formControlName="locationControl" type="text" class="form-control" id="input-location" placeholder="{{userProfile.profile.location !== '' ? '## Location not specified ##': userProfile.profile.location }}">
+                  </div>
+
+                  <div class="form-group col-auto">
+                    <label for="input-website">Featured Website</label>
+                    <input formControlName="websiteControl" type="text" class="form-control" id="input-website" placeholder="{{userProfile.profile.website !== '' ? '## Website not specified ##': userProfile.profile.website }}">
+                  </div>
+
+                  <div class="form-group col-auto">
+                    <label for="input-bio">Bio</label>
+                    <textarea formControlName="bioControl" class="form-control" id="input-bio" rows="3" placeholder="{{userProfile.profile.bio !== '' ? '## Bio not specified ##': userProfile.profile.bio }}"></textarea>
+                  </div>
                 </div>
               </div>
-              <div class="form-group">
 
-                <div class="col-xs-6">
-                  <label for="last_name"><h4>Last name</h4></label>
-                  <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+              <div class="row" *ngIf="errorUpdating">
+                <div class="col text-danger">
+                  Profile could not be saved please try again later
                 </div>
               </div>
-
-              <div class="form-group">
-
-                <div class="col-xs-6">
-                  <label for="phone"><h4>Phone</h4></label>
-                  <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-xs-6">
-                  <label for="mobile"><h4>Mobile</h4></label>
-                  <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                </div>
-              </div>
-              <div class="form-group">
-
-                <div class="col-xs-6">
-                  <label for="email"><h4>Email</h4></label>
-                  <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                </div>
-              </div>
-              <div class="form-group">
-
-                <div class="col-xs-6">
-                  <label for="email"><h4>Location</h4></label>
-                  <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                </div>
-              </div>
-              <div class="form-group">
-
-                <div class="col-xs-6">
-                  <label for="password"><h4>Password</h4></label>
-                  <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                </div>
-              </div>
-              <div class="form-group">
-
-                <div class="col-xs-6">
-                  <label for="password2"><h4>Verify</h4></label>
-                  <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-xs-12">
+              <div class="row form-group">
+                <div *ngIf="!updateSubmit" class="col">
                   <br>
-                  <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                  <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
+                  <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                  <button class="btn" type="reset" (click)="cancelEdit()"><i class="glyphicon glyphicon-repeat"></i> Cancel</button>
+                </div>
+                <div *ngIf="updateSubmit" class="col">
+                  <div>
+                    <app-loader [loadingText]="'Saving profile...'"></app-loader>
+                  </div>
                 </div>
               </div>
             </form>
           </div>
-        </div>
       </div>
     </div>
   </div>

@@ -6,7 +6,7 @@ html{
   --bg: #f5f6fa;
   --bg-panel: #dcdde1;
 
-  --h1-heading: #0096E5;
+  --h1-heading: #0097e6;
   --h2-heading: #40739e;
 
   --highlight: #0097e6;
@@ -24,9 +24,18 @@ body{
   min-height: 100% !important;
 }
 
-h1, h2, h3, h4{
-  color: var(--main-text);
+h1, h2, h3, h4, p{
+  color: var(--main-text) !important;
   font-family: moon-bold, sans-serif !important;
+}
+
+#app-header{
+  position: fixed;
+  box-shadow: 2px 0 15px var(--main-text);
+}
+
+#router-outlet{
+  padding-top: 15vh;
 }
 
 /*img {*/
@@ -43,4 +52,10 @@ h1, h2, h3, h4{
 @font-face {
   font-family: moon-light;
   src: url("assets/fonts/Moon-Light.otf");
+}
+
+#app-root{
+  height: 100% !important;
+  width: 100% !important;
+
 }
