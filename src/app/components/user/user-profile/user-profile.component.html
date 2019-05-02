@@ -12,7 +12,7 @@
 <div *ngIf="profileLoaded" id="profile-wrapper" class="container">
   <div id="profile-info">
     <div id="user-name-tag" class="row justify-content-sm-center">
-      <div class="col"><h2>@{{userProfile.user.userName}}</h2></div>
+      <div class="col pt-2"><h2>@{{userProfile.user.userName}}</h2></div>
     </div>
     <div class="row">
       <div class="col-sm-3">
@@ -30,8 +30,8 @@
       </div><!--/col-3-->
 
 
-      <div class="col-sm-9" *ngIf="!editMode">
-        <div class="row" *ngIf="privateProfile && !editMode">
+      <div class="col-sm-9 mt-3 mb-5" *ngIf="!editMode">
+        <div class="row justify-content-center" *ngIf="privateProfile && !editMode">
           <input type="button" class="btn btn-primary" value="Edit profile" (click)="openEditMode()">
         </div>
         <div class="row mt-2">
@@ -105,11 +105,21 @@
                 </div>
               </div>
 
-              <div class="form-group">
-                <div class="col-auto">
+              <div class="row" *ngIf="errorUpdating">
+                <div class="col text-danger">
+                  Profile could not be saved please try again later
+                </div>
+              </div>
+              <div class="row form-group">
+                <div *ngIf="!updateSubmit" class="col">
                   <br>
                   <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
                   <button class="btn" type="reset" (click)="cancelEdit()"><i class="glyphicon glyphicon-repeat"></i> Cancel</button>
+                </div>
+                <div *ngIf="updateSubmit" class="col">
+                  <div>
+                    <app-loader [loadingText]="'Saving profile...'"></app-loader>
+                  </div>
                 </div>
               </div>
             </form>

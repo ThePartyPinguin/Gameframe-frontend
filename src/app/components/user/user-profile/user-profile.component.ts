@@ -16,9 +16,10 @@ export class UserProfileComponent implements OnInit {
 
   editMode: boolean;
   privateProfile: boolean;
+  updateSubmit : boolean;
+  errorUpdating: boolean;
 
   tempUserProfile: UserProfile;
-
   updateProfileForm: FormGroup;
 
   constructor(private profileService : ProfileService, private route: ActivatedRoute) {
@@ -39,18 +40,34 @@ export class UserProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    const userName = this.route.snapshot.paramMap.get("username")
+    const userName = this.route.snapshot.paramMap.get("username");
 
     if(userName == null)
     {
       this.profileService.getPrivateProfile().subscribe((response) => {
+        console.log(response);
+        if(response.body.responseCode !== 200)
+        {
+          this.errorUpdating = true;
+          return;
+        }
         this.userProfile = response.body;
         this.profileLoaded = true;
         this.privateProfile = true;
       })
     }
     else{
-      this.profileService.getPublicProfile(userName);
+      this.profileService.getPublicProfile(userName).subscribe((response) => {
+        console.log(response);
+        if(response.body.responseCode !== 200)
+        {
+          this.errorUpdating = true;
+          return;
+        }
+        this.userProfile = response.body;
+        this.profileLoaded = true;
+        this.privateProfile = true;
+      });
     }
   }
 
@@ -82,7 +99,12 @@ export class UserProfileComponent implements OnInit {
   }
 
   saveEdit(){
-    this.editMode = false;
+    this.updateSubmit = true;
+
+
+    if(this.updateProfileForm.invalid){
+      return;
+    }
 
     this.tempUserProfile.user.userName = this.formControl.usernameControl.value;
     this.tempUserProfile.user.fullName = this.formControl.fullNameControl.value;
@@ -97,10 +119,16 @@ export class UserProfileComponent implements OnInit {
     console.log(this.userProfile);
 
 
-    this.profileService.updateProfile(this.userProfile).subscribe(
-      (response) => {
-      console.log(response)
-    });
+    // this.profileService.updateProfile(this.userProfile).subscribe(
+    //   (response) => {
+    //     this.updateSubmit = false;
+    //     if(response.status === 200)
+    //     {
+    //       this.editMode = false;
+    //
+    //     }
+    //
+    // });
   }
 
   cancelEdit(){
