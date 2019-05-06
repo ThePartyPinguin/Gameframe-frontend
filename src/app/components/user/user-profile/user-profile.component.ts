@@ -3,6 +3,7 @@ import {ProfileService} from '../../../services/profile/profile.service';
 import {UserProfile} from '../../../models/dto/user-dto/user-profile';
 import {ActivatedRoute} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-user-profile',
@@ -52,6 +53,7 @@ export class UserProfileComponent implements OnInit {
           return;
         }
         this.userProfile = response.body;
+
         this.profileLoaded = true;
         this.privateProfile = true;
       })
@@ -59,14 +61,20 @@ export class UserProfileComponent implements OnInit {
     else{
       this.profileService.getPublicProfile(userName).subscribe((response) => {
         console.log(response);
-        if(response.body.responseCode !== 200)
+        if(response.body.responseCode !== 500)
         {
           this.errorUpdating = true;
           return;
         }
         this.userProfile = response.body;
+
+        const local_id = localStorage.getItem(environment.user_id);
+
+        console.log(this.userProfile.user.userId);
+
+        this.privateProfile = local_id === this.userProfile.user.userId.toString();
+
         this.profileLoaded = true;
-        this.privateProfile = true;
       });
     }
   }
@@ -99,7 +107,7 @@ export class UserProfileComponent implements OnInit {
   }
 
   saveEdit(){
-    this.updateSubmit = true;
+    //this.updateSubmit = true;
 
 
     if(this.updateProfileForm.invalid){
@@ -119,16 +127,16 @@ export class UserProfileComponent implements OnInit {
     console.log(this.userProfile);
 
 
-    // this.profileService.updateProfile(this.userProfile).subscribe(
-    //   (response) => {
-    //     this.updateSubmit = false;
-    //     if(response.status === 200)
-    //     {
-    //       this.editMode = false;
-    //
-    //     }
-    //
-    // });
+    this.profileService.updateProfile(this.userProfile).subscribe(
+      (response) => {
+        this.updateSubmit = false;
+        if(response.status === 200)
+        {
+          this.editMode = false;
+
+        }
+
+    });
   }
 
   cancelEdit(){
