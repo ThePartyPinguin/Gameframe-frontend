@@ -19,8 +19,8 @@
 
         <div class="text-center">
           <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
-          <h6>Upload a different photo...</h6>
-          <input type="file" class="text-center center-block file-upload">
+          <h6 *ngIf="privateProfile">Upload a different photo...</h6>
+          <input *ngIf="privateProfile" type="file" class="text-center center-block file-upload">
         </div><br>
         <ul class="list-group">
           <li class="list-group-item text-muted text-center">Website <i class="fa fa-dashboard fa-1x"></i></li>
@@ -68,7 +68,7 @@
 <!-- panel for edit mode, only active on private profile and in edit mode-->
       <div class="col-sm-9" *ngIf="privateProfile && editMode">
           <div class="tab-pane active">
-            <form [formGroup]="updateProfileForm" class="form" id="profile-form" (ngSubmit)="saveEdit()">
+            <form [formGroup]="updateProfileForm" class="form" id="profile-form">
               <div class="row justify-content-sm-center">
                 <div class="col-md-auto col-lg">
                   <div class="form-group col-auto">
@@ -113,7 +113,7 @@
               <div class="row form-group">
                 <div *ngIf="!updateSubmit" class="col">
                   <br>
-                  <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                  <button class="btn btn-success" (click)="saveEdit()"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
                   <button class="btn" type="reset" (click)="cancelEdit()"><i class="glyphicon glyphicon-repeat"></i> Cancel</button>
                 </div>
                 <div *ngIf="updateSubmit" class="col">

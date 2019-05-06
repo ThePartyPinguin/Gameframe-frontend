@@ -17,9 +17,7 @@ export class ProfileService {
   }
 
   getPublicProfile(userName: string){
-    console.log("Getting profile for: " + userName)
-    console.log("Todo: finish getting public profile in services/profile.service.ts")
-    return this.http.get<UserProfile>(environment.apiUrl + '/profile/private/me', {observe: 'response'});
+    return this.http.get<UserProfile>(environment.apiUrl + '/profile/public/' + userName, {observe: 'response'});
   }
 
   updateProfile(userProfile : UserProfile){
