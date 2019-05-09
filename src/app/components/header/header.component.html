@@ -23,12 +23,19 @@
           <a class="nav-link px-3" [routerLink]="['/timeline']">About<span class="sr-only">(current)</span><hr class="d-lg-none"></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link px-3" [routerLink]="['/']">Forum<span class="sr-only">(current)</span><hr class="d-lg-none"></a>
+          <a class="nav-link px-3" [routerLink]="['/forum']">Forum<span class="sr-only">(current)</span><hr class="d-lg-none"></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="auth">
+          <a class="nav-link px-3" [routerLink]="['/profile']">Profile<span class="sr-only">(current)</span><hr class="d-lg-none"></a>
+        </li>
+        <li class="nav-item" *ngIf="auth">
+          <a class="nav-link px-3" [routerLink]="['/logout']">Logout<span class="sr-only">(current)</span><hr class="d-lg-none"></a>
+        </li>
+        <li class="nav-item" *ngIf="!auth">
           <a class="nav-link px-3" [routerLink]="['/login']">Login<span class="sr-only">(current)</span><hr class="d-lg-none"></a>
         </li>
-        <li class="nav-item inline px-3 pr-5">
+
+        <li class="nav-item inline px-3 pr-5" *ngIf="!auth">
           <a class="btn btn-primary" [routerLink]="['/register']">
             Register account
           </a>
