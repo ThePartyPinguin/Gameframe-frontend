@@ -1,3 +1,38 @@
-<p>
-  forum-post-summary works!
-</p>
+<div class="container-fluid border-bottom mt-3 pb-2">
+  <div class="row">
+    <div class="col-2 border-right mr-3">
+      <div class="row justify-content-center">
+        People following:
+      </div>
+      <div class="row justify-content-center">
+        <div class="h4">
+          25
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="row">
+        <div class="h3">
+          <a class=" text-body" [routerLink]="'/forum/post/postid'">'temp title' (add post title to url)</a>
+        </div>
+      </div>
+      <div class="row float-left">
+        <div class="col-auto">
+          <button type="button" class="btn btn-primary btn-sm mr-1">#Ding1</button>
+          <button type="button" class="btn btn-primary btn-sm mr-1">#Ding1</button>
+          <button type="button" class="btn btn-primary btn-sm mr-1">#Ding1</button>
+        </div>
+      </div>
+      <div class="row float-right">
+        <div class="col-auto mr-0 pr-0">
+          Asked by: <span class="text-primary"><a [routerLink]="'/profile/ThePartyPinguin'">ThePartyPinguin(add name to route)</a></span>
+        </div>
+        <div class="col-auto">
+          at: '26-03-2019'
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
