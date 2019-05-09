@@ -39,12 +39,52 @@ h1, h2, h3, h4, p{
   padding-top: 15vh;
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 990px){
   #router-outlet{
-    padding-top: 25vh !important;
+    padding-top: 12vh !important;
   }
-
 }
+
+@media only screen and (max-width: 766px){
+  #router-outlet{
+    padding-top: 10vh !important;
+  }
+}
+
+@media only screen and (max-width: 350px){
+  #router-outlet{
+    padding-top: 15vh !important;
+  }
+}
+
+@media only screen and (max-width: 450px){
+  #router-outlet{
+    padding-top: 12vh !important;
+  }
+}
+
+/*@media only screen and (max-height: 830px){*/
+/*  #router-outlet{*/
+/*    padding-top: 25vh !important;*/
+/*  }*/
+/*}*/
+
+/*@media only screen and (max-height: 850px){*/
+/*  #router-outlet{*/
+/*    padding-top: 15vh;*/
+/*  }*/
+/*}*/
+
+/*@media only screen and (min-height: 850px){*/
+/*  #router-outlet{*/
+/*    padding-top: 15vh;*/
+/*  }*/
+/*}*/
+/*@media only screen and (max-height: 550px){*/
+/*  #router-outlet{*/
+/*    padding-top: 15vh !important;*/
+/*  }*/
+/*}*/
 
 /*img {*/
 /*  display: block;*/
