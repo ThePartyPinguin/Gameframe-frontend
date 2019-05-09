@@ -18,6 +18,8 @@ import {AuthHeader} from './interceptors/auth-header.interceptor';
 import {AuthHeaderResponseInterceptor} from './interceptors/auth-header-response.interceptor';
 import {RegisterService} from './services/auth/register.service';
 import { LoaderComponent } from './components/helpers/loader/loader.component';
+import { ForumMainComponent } from './components/forum/forum-main/forum-main.component';
+import { ForumPostSummaryComponent } from './components/forum/forum-post-summary/forum-post-summary.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { LoaderComponent } from './components/helpers/loader/loader.component';
     RegisterComponent,
     UserProfileComponent,
     LoaderComponent,
+    ForumMainComponent,
+    ForumPostSummaryComponent,
   ],
   imports: [
     BrowserModule,
