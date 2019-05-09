@@ -22,6 +22,7 @@ import { ForumMainComponent } from './components/forum/forum-main/forum-main.com
 import { ForumPostSummaryComponent } from './components/forum/forum-post-summary/forum-post-summary.component';
 import {AuthGuard} from './guards/authentication.guards';
 import {LogoutComponent} from './components/auth/logout/logout.component';
+import { ForumCreatePostComponent } from './components/forum/forum-create-post/forum-create-post.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {LogoutComponent} from './components/auth/logout/logout.component';
     LogoutComponent,
     ForumMainComponent,
     ForumPostSummaryComponent,
+    ForumCreatePostComponent,
   ],
   imports: [
     BrowserModule,

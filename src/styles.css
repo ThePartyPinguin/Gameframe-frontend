@@ -39,6 +39,13 @@ h1, h2, h3, h4, p{
   padding-top: 15vh;
 }
 
+@media only screen and (max-width: 600px){
+  #router-outlet{
+    padding-top: 25vh !important;
+  }
+
+}
+
 /*img {*/
 /*  display: block;*/
 /*  max-width: 75%;*/
