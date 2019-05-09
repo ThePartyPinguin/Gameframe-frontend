@@ -18,6 +18,7 @@ import {AuthHeader} from './interceptors/auth-header.interceptor';
 import {AuthHeaderResponseInterceptor} from './interceptors/auth-header-response.interceptor';
 import {RegisterService} from './services/auth/register.service';
 import { LoaderComponent } from './components/helpers/loader/loader.component';
+import {AuthGuard} from './guards/authentication.guards';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { LoaderComponent } from './components/helpers/loader/loader.component';
     LoginService,
     RegisterService,
     ProfileService,
+    AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthHeader,
