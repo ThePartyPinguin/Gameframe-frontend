@@ -31,11 +31,19 @@ h1, h2, h3, h4, p{
 
 #app-header{
   position: fixed;
+  z-index: 2;
   box-shadow: 2px 0 15px var(--main-text);
 }
 
 #router-outlet{
   padding-top: 15vh;
+}
+
+@media only screen and (max-width: 600px){
+  #router-outlet{
+    padding-top: 25vh !important;
+  }
+
 }
 
 /*img {*/
