@@ -14,7 +14,7 @@
 
   <div class="row pb-3">
     <div class="col">
-      <form role="form" id="question-form">
+      <form [formGroup]="formGroup" role="form" id="question-form">
         <div class="form-group">
           <label for="title-input">Question title</label>
           <input type="text" id="title-input" formControlName="titleInput" class="form-control" placeholder="Question title">
@@ -22,11 +22,11 @@
         </div>
         <div class="form-group">
           <label for="question-content">Describe your problem</label>
-          <textarea id="question-content" formControlName="titleInput" class="form-control" rows="8" placeholder="Describe you problem as detailed as possible"></textarea>
+          <textarea id="question-content" formControlName="contentInput" class="form-control" rows="8" placeholder="Describe you problem as detailed as possible"></textarea>
         </div>
         <div class="form-group">
           <label for="tag-input">Tags</label>
-          <input type="text" id="tag-input" formControlName="titleInput" class="form-control" placeholder="e.g. #Spring, #Java, #JavaScript etc..">
+          <input type="text" id="tag-input" formControlName="tagInput" class="form-control" placeholder="e.g. #Spring, #Java, #JavaScript etc..">
           <small id="tag-help" class="form-text text-muted">Use tags to make your question easier to find</small>
         </div>
       </form>
@@ -97,7 +97,7 @@
 
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary">Post your question</button>
+      <button class="btn btn-primary" (click)="createNewPost()">Post your question</button>
     </div>
   </div>
 
