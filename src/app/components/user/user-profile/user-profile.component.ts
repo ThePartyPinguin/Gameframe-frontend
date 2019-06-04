@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ProfileService} from '../../../services/profile/profile.service';
 import {UserProfile} from '../../../models/dto/user-dto/user-profile';
 import {ActivatedRoute} from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
+import {FileService} from '../../../services/files/file.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -23,20 +24,11 @@ export class UserProfileComponent implements OnInit {
   tempUserProfile: UserProfile;
   updateProfileForm: FormGroup;
 
-  constructor(private profileService : ProfileService, private route: ActivatedRoute) {
+  profileAvatarFileChanged : boolean;
 
-    // this.updateProfileForm = new FormGroup({
-    //   usernameControl : new FormControl('',{
-    //     validators: [Validators.required]
-    //   }),
-    //   fullNameControl: new FormControl('', {
-    //   }),
-    //   emailControl : new FormControl('', {
-    //     validators: [Validators.required, Validators.email]
-    //   }),
-    //   locationControl: new FormControl(),
-    //   bioControl: new FormControl()
-    // })
+  avatarUploadForm : FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private profileService : ProfileService, private route: ActivatedRoute, private fileService : FileService) {
 
   }
 
@@ -77,6 +69,10 @@ export class UserProfileComponent implements OnInit {
         this.profileLoaded = true;
       });
     }
+
+    this.avatarUploadForm = this.formBuilder.group({
+      avatar: ['']
+    });
   }
 
   openEditMode(){
@@ -149,6 +145,19 @@ export class UserProfileComponent implements OnInit {
     }
     else{
       window.open('https://' + this.userProfile.profile.website, '_blank');
+    }
+  }
+
+  onProfileAvatarFileChange(event) {
+    // let reader = new FileReader();
+    if(event.target.files && event.target.files.length > 0) {
+      let file = event.target.files[0];
+      console.log(file);
+
+      this.fileService.uploadNewProfileAvatar(file).subscribe((response) => {
+        console.log(response);
+        // this.userProfile.profile.profilePicture = response.body.imageName;
+      });
     }
   }
 }

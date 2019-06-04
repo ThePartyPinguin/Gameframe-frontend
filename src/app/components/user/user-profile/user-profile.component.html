@@ -6,6 +6,7 @@
 
 <div *ngIf="profileLoaded" id="profile-banner" class="container-fluid">
   <div class="row">
+
     <img src="assets/profile/default-profile-banner-grey.png" class="img-fluid mx-auto" alt="Responsive image">
   </div>
 </div>
@@ -18,9 +19,10 @@
       <div class="col-sm-3">
 
         <div class="text-center">
-          <img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
+          <img id="profile-avatar" *ngIf="userProfile.profile.profilePicture !== '' || userProfile.profile.profilePicture !== null" src="{{userProfile.profile.profilePicture}}" alt="temp image">
+          <img *ngIf="userProfile.profile.profilePicture === '' || userProfile.profile.profilePicture === null" src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="avatar img-circle img-thumbnail" alt="avatar">
           <h6 *ngIf="privateProfile">Upload a different photo...</h6>
-          <input *ngIf="privateProfile" type="file" class="text-center center-block file-upload">
+          <input *ngIf="privateProfile" type="file" class="text-center center-block file-upload" (change)="onProfileAvatarFileChange($event)">
         </div><br>
         <ul class="list-group">
           <li class="list-group-item text-muted text-center">Website <i class="fa fa-dashboard fa-1x"></i></li>

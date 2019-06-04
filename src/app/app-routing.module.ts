@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'logout', component: LogoutComponent, canActivate: [AuthGuard]},
   {path: 'forum', component: ForumMainComponent},
-  {path: 'forum/post/new', component: ForumCreatePostComponent},
+  {path: 'forum/post/new', component: ForumCreatePostComponent, canActivate: [AuthGuard]},
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'profile/:username', component: UserProfileComponent}
 ];

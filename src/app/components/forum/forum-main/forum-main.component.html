@@ -12,11 +12,11 @@
         Most recent questions
       </div>
     </div>
-    <div class="col-lg-2 d-none d-lg-block float-lg-right justify-content-center">
+    <div *ngIf="authenticated" class="col-lg-2 d-none d-lg-block float-lg-right justify-content-center">
       <a class="btn btn-primary btn text-white" [routerLink]="'/forum/post/new'">New question</a>
     </div>
 
-    <div class="col-12 d-block d-lg-none justify-content-center">
+    <div *ngIf="authenticated" class="col-12 d-block d-lg-none justify-content-center">
       <a class="btn btn-primary btn-sm text-white" [routerLink]="'/forum/post/new'">New question</a>
     </div>
   </div>
