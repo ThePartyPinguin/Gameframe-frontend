@@ -6,7 +6,7 @@
       </div>
       <div class="row justify-content-center d-none d-lg-block">
         <div class="h4">
-          25
+          {{postDto.followerCount}}
         </div>
       </div>
 
@@ -15,7 +15,7 @@
       </div>
       <div class="row justify-content-center d-lg-none">
         <div class="h4">
-          <small class="font-weight-bold">25</small>
+          <small class="font-weight-bold">{{postDto.followerCount}}</small>
         </div>
       </div>
     </div>
@@ -24,35 +24,42 @@
       <div class="row">
         <div class="col">
           <div class="h3 d-none d-lg-block">
-            <a class="text-body" [routerLink]="'/forum/post/postid'">'temp title' (add post title to url)</a>
+            <a class="text-body" [routerLink]="'/forum/post/' + postDto.postId">{{postDto.title}}</a>
           </div>
 
           <div class="h6 d-lg-none">
-            <small><a class="text-body font-weight-bold" [routerLink]="'/forum/post/postid'">'temp title' (add post title to url)</a></small>
+            <small><a class="text-body font-weight-bold" [routerLink]="'/forum/post/' + postDto.postId">{{postDto.title}}</a></small>
           </div>
         </div>
       </div>
       <div class="row float-left">
         <div class="col-auto d-none d-lg-block">
-            <a class="text-decoration-none text-primary">#Ding1</a> |
-            <a class="text-decoration-none text-primary">#Ding1</a> |
-            <a class="text-decoration-none text-primary">#Ding1</a>
+          <div *ngFor="let tag of postDto.tags">
+            <a class="text-decoration-none text-primary">{{tag}}</a> |
+          </div>
+<!--            <a class="text-decoration-none text-primary">#Ding1</a> |-->
+<!--            <a class="text-decoration-none text-primary">#Ding1</a>-->
         </div>
         <div class="col-auto d-block d-lg-none">
-          <small>
-            <a class="text-decoration-none text-primary">#Ding1</a> |
-            <a class="text-decoration-none text-primary">#Ding1</a> |
-            <a class="text-decoration-none text-primary">#Ding1</a>
-          </small>
+          <div *ngFor="let tag of postDto.tags">
+            <small>
+              <a class="text-decoration-none text-primary">{{tag}}</a> |
+            </small>
+          </div>
+<!--          <small>-->
+<!--            <a class="text-decoration-none text-primary">#Ding1</a> |-->
+<!--            <a class="text-decoration-none text-primary">#Ding1</a> |-->
+<!--            <a class="text-decoration-none text-primary">#Ding1</a>-->
+<!--          </small>-->
         </div>
       </div>
       <div class="row float-right">
 
         <div class="col-auto mr-lg-3 pr-lg-2 mr-0 pr-0">
-          <small><span class="font-italic mr-2">Asked by:</span><span class="text-primary"><a [routerLink]="'/profile/ThePartyPinguin'">ThePartyPinguin</a></span></small>
+          <small><span class="font-italic mr-2">Asked by:</span><span class="text-primary"><a [routerLink]="'/profile/' + postDto.creator.userName">{{postDto.creator.userName}}</a></span></small>
         </div>
         <div class="col-auto">
-          <small><span class="font-italic mr-2">On:</span> '26-03-2019'</small>
+          <small><span class="font-italic mr-2">On:</span> {{postDate.getDay()}} - {{postDate.getMonth()}} - {{postDate.getFullYear()}}</small>
         </div>
       </div>
     </div>

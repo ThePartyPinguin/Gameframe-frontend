@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
+import {PostDto} from '../../models/dto/posting/post-dto.model';
 import {environment} from '../../../environments/environment';
-import {CreatePostDto} from '../../models/dto/create-post/createPostDto.model';
+import {Router} from '@angular/router';
+import {BasicPostDto} from '../../models/dto/posting/basic-post-dto.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostingService {
-
-  postDto : CreatePostDto;
 
   constructor(private http : HttpClient, private router : Router) { }
 
@@ -17,21 +16,22 @@ export class PostingService {
 
     let userId = localStorage.getItem(environment.user_id);
 
-    this.postDto = new class implements CreatePostDto {
+    let postDto : PostDto = new class implements PostDto {
       postContent: string;
       postTitle: string;
       tagLine: string;
       userId: number;
-    }
+    };
 
-    this.postDto.userId = Number.parseInt(userId);
-    this.postDto.postContent = content;
-    this.postDto.postTitle = title;
-    this.postDto.tagLine = tags;
+    postDto.userId = Number.parseInt(userId);
+    postDto.postContent = content;
+    postDto.postTitle = title;
+    postDto.tagLine = tags;
 
-
-    return this.http.post(environment.apiUrl + "/post/private/new", this.postDto, {observe : 'response', headers : {'Content-Type' : 'application/json'}})
+    return this.http.post(environment.apiUrl + "/post/private/new", postDto, {observe : 'response', headers : {'Content-Type' : 'application/json'}})
   }
 
-
+  getPostsPage(postsPerPage : number, pageNumber : number){
+    return this.http.get<BasicPostDto[]>(environment.apiUrl + "/post/public/basic?page="+pageNumber+"&perPageCount=" + postsPerPage)
+  }
 }

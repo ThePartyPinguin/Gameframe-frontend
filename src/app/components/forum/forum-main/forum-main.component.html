@@ -12,12 +12,12 @@
         Most recent questions
       </div>
     </div>
-    <div class="col-lg-2 d-none d-lg-block float-lg-right justify-content-center">
-      <a class="btn btn-primary btn text-white" [routerLink]="'/forum/post/new'">New question</a>
+    <div *ngIf="authenticated" class="col-lg-2 d-none d-lg-block float-lg-right justify-content-center">
+      <a class="btn btn-primary btn text-white" [routerLink]="'/forum/new'">New question</a>
     </div>
 
-    <div class="col-12 d-block d-lg-none justify-content-center">
-      <a class="btn btn-primary btn-sm text-white" [routerLink]="'/forum/post/new'">New question</a>
+    <div *ngIf="authenticated" class="col-12 d-block d-lg-none justify-content-center">
+      <a class="btn btn-primary btn-sm text-white" [routerLink]="'/forum/new'">New question</a>
     </div>
   </div>
   <div class="row">
@@ -28,7 +28,11 @@
 
   <div class="row">
     <div class="col">
-      <app-forum-post-summary></app-forum-post-summary>
+      <div class="row" *ngFor="let post of currentPagePosts">
+        <div class="col">
+          <app-forum-post-summary [postDto]="post"></app-forum-post-summary>
+        </div>
+      </div>
     </div>
   </div>
 </div>

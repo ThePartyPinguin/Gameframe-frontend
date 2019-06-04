@@ -1,6 +1,6 @@
-export interface CreatePostDto {
+export interface PostDto {
   userId : number,
   postTitle : string,
   postContent : string,
-  tagLine : string
+  tagLine : string;
 }

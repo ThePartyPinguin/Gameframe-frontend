@@ -23,6 +23,7 @@ import { ForumPostSummaryComponent } from './components/forum/forum-post-summary
 import {AuthGuard} from './guards/authentication.guards';
 import {LogoutComponent} from './components/auth/logout/logout.component';
 import { ForumCreatePostComponent } from './components/forum/forum-create-post/forum-create-post.component';
+import { ForumFullPostComponent } from './components/forum/forum-full-post/forum-full-post.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ForumCreatePostComponent } from './components/forum/forum-create-post/f
     ForumMainComponent,
     ForumPostSummaryComponent,
     ForumCreatePostComponent,
+    ForumFullPostComponent,
   ],
   imports: [
     BrowserModule,
