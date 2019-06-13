@@ -8,6 +8,7 @@ import {AuthGuard} from './guards/authentication.guards';
 import {LogoutComponent} from './components/auth/logout/logout.component';
 import {ForumMainComponent} from './components/forum/forum-main/forum-main.component';
 import {ForumCreatePostComponent} from './components/forum/forum-create-post/forum-create-post.component';
+import {ForumFullPostComponent} from './components/forum/forum-full-post/forum-full-post.component';
 
 const routes: Routes = [
   {path: '', component: LandingComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'logout', component: LogoutComponent, canActivate: [AuthGuard]},
   {path: 'forum', component: ForumMainComponent},
-  {path: 'forum/post/new', component: ForumCreatePostComponent},
+  {path: 'forum/new', component: ForumCreatePostComponent, canActivate: [AuthGuard]},
+  {path: 'forum/post/:postId', component: ForumFullPostComponent},
   {path: 'profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'profile/:username', component: UserProfileComponent}
 ];

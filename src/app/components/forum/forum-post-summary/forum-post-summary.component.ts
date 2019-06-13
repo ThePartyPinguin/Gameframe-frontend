@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {BasicPostDto} from '../../../models/dto/posting/basic-post-dto.model';
 
 @Component({
   selector: 'app-forum-post-summary',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ForumPostSummaryComponent implements OnInit {
 
+  @Input()
+  postDto : BasicPostDto;
+
+  postDate : Date;
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.postDto.tags[0].tagString);
+    this.postDate = new Date(this.postDto.datePosted);
   }
 
 }
