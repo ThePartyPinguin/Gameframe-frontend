@@ -34,4 +34,8 @@ export class PostingService {
   getPostsPage(postsPerPage : number, pageNumber : number){
     return this.http.get<BasicPostDto[]>(environment.apiUrl + "/post/public/basic?page="+pageNumber+"&perPageCount=" + postsPerPage)
   }
+
+  getPostById(id : number){
+    return this.http.get<BasicPostDto>(environment.apiUrl + "/post/public?postId=" + id)
+  }
 }
