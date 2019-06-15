@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {PostingService} from '../../../services/posting/posting.service';
-import {BasicPostDto} from '../../../models/dto/posting/basic-post-dto.model';
+import {FullPostDto} from '../../../models/dto/posting/full-post-dto.model';
+import {FullCommentDto} from '../../../models/dto/posting/full-comment-dto.model';
 
 @Component({
   selector: 'app-forum-full-post',
@@ -11,7 +12,7 @@ import {BasicPostDto} from '../../../models/dto/posting/basic-post-dto.model';
 export class ForumFullPostComponent implements OnInit {
 
   postId : string;
-  post : BasicPostDto;
+  post : FullPostDto;
   postLoaded : boolean;
   postContent : string[];
   datePosted : Date;
@@ -28,6 +29,10 @@ export class ForumFullPostComponent implements OnInit {
       this.postContent = this.post.content.split("<br>")
 
     })
+  }
+
+  commentAdded(comment : FullCommentDto){
+    this.post.comments.push(comment);
   }
 
 }

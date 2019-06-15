@@ -1,6 +1,6 @@
 import {User} from '../user-dto/user';
 import {TagDto} from './tag.model';
-import {CommentDto} from './comment-dto.model';
+import {FullCommentDto} from './full-comment-dto.model';
 
 export interface FullPostDto {
   responseCode : string,
@@ -12,5 +12,5 @@ export interface FullPostDto {
   creator : User,
   datePosted : Date,
   tags : TagDto[];
-  comments : CommentDto[];
+  comments : FullCommentDto[];
 }

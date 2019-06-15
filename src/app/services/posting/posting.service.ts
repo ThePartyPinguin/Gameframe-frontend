@@ -4,6 +4,8 @@ import {PostDto} from '../../models/dto/posting/post-dto.model';
 import {environment} from '../../../environments/environment';
 import {Router} from '@angular/router';
 import {BasicPostDto} from '../../models/dto/posting/basic-post-dto.model';
+import {FullCommentDto} from '../../models/dto/posting/full-comment-dto.model';
+import {FullPostDto} from '../../models/dto/posting/full-post-dto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +38,13 @@ export class PostingService {
   }
 
   getPostById(id : number){
-    return this.http.get<BasicPostDto>(environment.apiUrl + "/post/public?postId=" + id)
+    return this.http.get<FullPostDto>(environment.apiUrl + "/post/public?postId=" + id)
+  }
+
+  addCommentToPost(postId : number, commentContent : string){
+
+    let userId = localStorage.getItem(environment.user_id);
+
+    return this.http.post<FullCommentDto>(environment.apiUrl + '/post/public/comment', {commenterId : Number.parseInt(userId), postId : postId, commentContent : commentContent})
   }
 }
