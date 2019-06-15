@@ -48,6 +48,6 @@
   </div>
 </div>
 
-<div class="container" *ngIf="postLoaded">
-
+<div class="container mt-5" *ngIf="postLoaded">
+  <app-forum-add-comment [post]="post" (commentAddedCallback)="commentAdded($event)"></app-forum-add-comment>
 </div>
