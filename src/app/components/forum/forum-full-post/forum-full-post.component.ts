@@ -13,6 +13,8 @@ export class ForumFullPostComponent implements OnInit {
   postId : string;
   post : BasicPostDto;
   postLoaded : boolean;
+  postContent : string[];
+  datePosted : Date;
 
   constructor(private route: ActivatedRoute, private postService : PostingService) { }
 
@@ -22,6 +24,9 @@ export class ForumFullPostComponent implements OnInit {
     this.postService.getPostById(+this.postId).subscribe((response) => {
       this.post = response;
       this.postLoaded = true;
+      this.datePosted = new Date(this.post.datePosted);
+      this.postContent = this.post.content.split("<br>")
+
     })
   }
 
