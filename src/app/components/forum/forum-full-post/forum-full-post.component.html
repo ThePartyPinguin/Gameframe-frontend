@@ -46,8 +46,29 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-auto mt-5">
+      <span class="h3">{{post.comments.length}}</span>
+      <span class="h3 pl-2">Answers</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="row" *ngFor="let comment of post.comments">
+        <app-forum-comment class="col" [fullCommentDto]="comment"></app-forum-comment>
+      </div>
+    </div>
+  </div>
 </div>
 
-<div class="container mt-5" *ngIf="postLoaded">
+<div class="container mt-5" *ngIf="postLoaded && isAuthenticated()">
   <app-forum-add-comment [post]="post" (commentAddedCallback)="commentAdded($event)"></app-forum-add-comment>
 </div>

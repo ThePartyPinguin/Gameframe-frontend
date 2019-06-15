@@ -53,7 +53,16 @@ export class ForumAddCommentComponent implements OnInit {
 
     let answer = this.commentFormControls.answerControl.value.toString();
 
-    this.postingService.addCommentToPost(this.post.postId, answer).subscribe(response => {
+    let splitContent = answer.split('\n');
+
+    let newContent : string = "";
+
+    for (let line of splitContent){
+      newContent += line;
+      newContent += "<br>";
+    }
+
+    this.postingService.addCommentToPost(this.post.postId, newContent).subscribe(response => {
       this.commentAddedCallback.emit(response);
     });
   }

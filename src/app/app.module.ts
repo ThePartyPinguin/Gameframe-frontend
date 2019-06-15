@@ -24,7 +24,7 @@ import {AuthGuard} from './guards/authentication.guards';
 import {LogoutComponent} from './components/auth/logout/logout.component';
 import { ForumCreatePostComponent } from './components/forum/forum-create-post/forum-create-post.component';
 import { ForumFullPostComponent } from './components/forum/forum-full-post/forum-full-post.component';
-import { ForumAddCommmentComponent } from './components/forum/forum-add-commment/forum-add-commment.component';
+import { ForumCommentComponent } from './components/forum/forum-comment/forum-comment.component';
 import { ForumAddCommentComponent } from './components/forum/forum-add-comment/forum-add-comment.component';
 
 @NgModule({
@@ -42,7 +42,7 @@ import { ForumAddCommentComponent } from './components/forum/forum-add-comment/f
     ForumPostSummaryComponent,
     ForumCreatePostComponent,
     ForumFullPostComponent,
-    ForumAddCommmentComponent,
+    ForumCommentComponent,
     ForumAddCommentComponent,
   ],
   imports: [
