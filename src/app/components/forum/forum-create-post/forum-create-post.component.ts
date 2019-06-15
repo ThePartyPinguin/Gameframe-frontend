@@ -69,10 +69,21 @@ export class ForumCreatePostComponent implements OnInit {
       return;
     }
     let title = this.formControls.postTitleInput.value;
-    let content = this.formControls.postContentInput.value;
+    let content : string = this.formControls.postContentInput.value;
     let tags = this.formControls.postTagsInput.value;
 
-    this.postingService.createNewPost(title, content, tags).subscribe(
+    let splitContent = content.split('\n');
+
+    let newContent : string = "";
+
+    for (let line of splitContent){
+      newContent += line;
+      newContent += "<br>";
+    }
+
+    console.log(newContent);
+
+    this.postingService.createNewPost(title, newContent, tags).subscribe(
       (response) =>{
         console.log(response);
       }
