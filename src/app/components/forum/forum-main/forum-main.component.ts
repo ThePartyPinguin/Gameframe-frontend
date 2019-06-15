@@ -24,7 +24,7 @@ export class ForumMainComponent implements OnInit {
   }
 
   get authenticated(){
-    return this.loginService.isAuthenticated();
+    return LoginService.isAuthenticated();
   }
 
 

@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-auto">
+      <span class="h2">
+        Your answer
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <form [formGroup]="commentForm">
+        <div class="form-group">
+          <div class="row justify-content-end">
+            <div class="col-auto">
+              <label for="answer-area"><span [ngClass]="answerLength < minCharsAnswer ? 'text-danger' : 'text-success'">{{answerLength}}/{{minCharsAnswer}} (Min length)</span></label>
+            </div>
+          </div>
+          <textarea id="answer-area" class="form-control" formControlName="answerControl" placeholder="Type your answer here" rows="8"></textarea>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row" *ngIf="formInValid">
+    <div class="col">
+      <span class="text-danger">Please fill in your answer in the form</span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-auto">
+      <button class="btn btn-primary" (click)="submitAnswer()" [disabled]="answerLength < minCharsAnswer">Submit answer</button>
+    </div>
+  </div>
+</div>

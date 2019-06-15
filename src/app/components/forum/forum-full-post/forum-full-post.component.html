@@ -1,4 +1,4 @@
-<div class="container h-100" *ngIf="!postLoaded">
+<div class="container" *ngIf="!postLoaded">
   <div class="row justify-content-center">
     <div class="col-auto">
       <app-loader [loadingText]="'Loading post...'"></app-loader>
@@ -6,16 +6,31 @@
   </div>
 </div>
 
-<div class="container h-100">
+<div class="container" *ngIf="postLoaded">
   <div class="row">
     <div class="col-auto">
       <span class="h1">{{post.title}}</span>
     </div>
   </div>
-
   <div class="row">
-    <div class="col-auto">
-      <p>{{post.content}}</p>
+    <div class="col">
+      <hr>
+    </div>
+  </div>
+  <div class="row pl-2">
+    <div class="col-8">
+      <div class="row" *ngFor="let line of postContent">
+        {{line}}
+        <br>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="row">
+        <span class="h5">Asked on <strong>{{datePosted.getUTCDate() > 10 ? "" : "0"}}{{datePosted.getUTCDate()}}-{{datePosted.getUTCMonth() + 1 > 10 ? "" : "0"}}{{datePosted.getUTCMonth() + 1}}-{{datePosted.getUTCFullYear()}}</strong></span>
+      </div>
+      <div class="row">
+        <span class="h5">By:</span><span class="h5 font-weight-bold pl-2"><a [routerLink]="'/profile/' + post.creator.userName">{{post.creator.userName}}</a></span>
+      </div>
     </div>
   </div>
 
@@ -31,4 +46,29 @@
       </div>
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-auto mt-5">
+      <span class="h3">{{post.comments.length}}</span>
+      <span class="h3 pl-2">Answers</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <hr>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="row" *ngFor="let comment of post.comments">
+        <app-forum-comment class="col" [fullCommentDto]="comment"></app-forum-comment>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5" *ngIf="postLoaded && isAuthenticated()">
+  <app-forum-add-comment [post]="post" (commentAddedCallback)="commentAdded($event)"></app-forum-add-comment>
 </div>
