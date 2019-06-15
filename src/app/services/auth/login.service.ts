@@ -40,7 +40,7 @@ export class LoginService {
     this.router.navigateByUrl('');
   }
 
-  isAuthenticated() : boolean{
+  static isAuthenticated() : boolean{
     return window.localStorage.getItem(environment.user_token) != null;
   }
 
