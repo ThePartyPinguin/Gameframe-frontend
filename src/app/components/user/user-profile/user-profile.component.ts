@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from '../../../../environments/environment';
 import {FileService} from '../../../services/files/file.service';
+import {UserFollowedPostsDto} from '../../../models/dto/posting/user-followed-posts-dto.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -28,6 +29,9 @@ export class UserProfileComponent implements OnInit {
 
   avatarUploadForm : FormGroup;
 
+  followedPosts : UserFollowedPostsDto;
+  followedPostsLoaded : boolean;
+
   constructor(private formBuilder: FormBuilder, private profileService : ProfileService, private route: ActivatedRoute, private fileService : FileService) {
 
   }
@@ -48,6 +52,7 @@ export class UserProfileComponent implements OnInit {
 
         this.profileLoaded = true;
         this.privateProfile = true;
+        this.getFollowedPosts();
       })
     }
     else{
@@ -159,5 +164,15 @@ export class UserProfileComponent implements OnInit {
         // this.userProfile.profile.profilePicture = response.body.imageName;
       });
     }
+  }
+
+  getFollowedPosts(){
+    this.followedPostsLoaded = false;
+    this.profileService.getFollowedPosts().subscribe(response => {
+      this.followedPosts = response;
+      console.log(this.followedPosts);
+
+      this.followedPostsLoaded = true;
+    });
   }
 }
