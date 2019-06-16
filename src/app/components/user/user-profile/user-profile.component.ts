@@ -170,6 +170,7 @@ export class UserProfileComponent implements OnInit {
     this.followedPostsLoaded = false;
     this.profileService.getFollowedPosts().subscribe(response => {
       this.followedPosts = response;
+      console.log('followedPosts');
       console.log(this.followedPosts);
 
       this.followedPostsLoaded = true;

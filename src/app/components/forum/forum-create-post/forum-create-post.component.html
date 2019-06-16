@@ -110,8 +110,11 @@
   </div>
 
   <div class="row">
-    <div class="col">
-      <button class="btn btn-primary" (click)="createNewPost()">Post your question</button>
+    <div class="col-auto">
+      <button class="btn btn-primary" (click)="createNewPost()" [disabled]="submitted">Post your question</button>
+    </div>
+    <div class="col-auto" *ngIf="submitted">
+      <span>Processing you post...</span>
     </div>
   </div>
 

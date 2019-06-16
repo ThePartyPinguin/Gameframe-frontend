@@ -27,7 +27,6 @@ export class ForumFullPostComponent implements OnInit {
     this.postLoaded = false;
     this.postService.getPostById(+this.postId).subscribe((response) => {
       this.post = response;
-      console.log(response);
 
       this.datePosted = new Date(this.post.datePosted);
       this.postContent = this.post.content.split("<br>");
@@ -50,7 +49,6 @@ export class ForumFullPostComponent implements OnInit {
   followPost(){
     this.followSubmit = true;
     this.postService.followPost(this.post.postId).subscribe((response) => {
-      console.log(response);
       this.checkIsFollowing();
       this.followSubmit = false;
     });
@@ -59,7 +57,6 @@ export class ForumFullPostComponent implements OnInit {
   stopFollowingPost(){
     this.followSubmit = true;
     this.postService.stopFollowingPost(this.post.postId).subscribe((response) => {
-      console.log(response);
       this.checkIsFollowing();
       this.followSubmit = false;
     });
@@ -67,7 +64,6 @@ export class ForumFullPostComponent implements OnInit {
 
   checkIsFollowing(){
     this.postService.isFollowingPost(this.post.postId).subscribe((response) => {
-      console.log(response);
 
       this.isFollowing = response.responseMessage === 'true';
       this.postLoaded = true;

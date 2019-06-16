@@ -13,18 +13,58 @@ import {BasicPostDto} from '../../../models/dto/posting/basic-post-dto.model';
 export class ForumMainComponent implements OnInit {
 
   currentPagePosts : BasicPostDto[];
+  currentPage : number;
+  pageSize : number;
+
+  loadingPage : boolean;
+
+  overRuleNextPage : boolean;
 
   constructor(private loginService : LoginService, private postService : PostingService) { }
 
   ngOnInit() {
-    this.postService.getPostsPage(10, 0).subscribe(response => {
-      console.log(response);
-      this.currentPagePosts = response;
-    })
+    this.pageSize = 7;
+    this.currentPage = 0;
+    this.loadCurrentPage();
   }
 
   get authenticated(){
     return LoginService.isAuthenticated();
+  }
+
+  getNextPage(){
+
+    if(this.overRuleNextPage)
+      return;
+
+    this.currentPage++;
+    this.loadCurrentPage();
+  }
+
+  getPreviousPage(){
+    this.currentPage--;
+
+    if(this.overRuleNextPage)
+      this.overRuleNextPage = false;
+
+    this.loadCurrentPage();
+  }
+
+  loadCurrentPage(){
+    this.loadingPage = true;
+    this.postService.getPostsPage(this.pageSize, this.currentPage).subscribe(response => {
+      try{
+        this.currentPagePosts = response._embedded.basicPostResponseList;
+      }
+      catch (e) {
+        this.currentPage--;
+        this.overRuleNextPage = true;
+        this.loadCurrentPage();
+      }
+
+
+      this.loadingPage = false;
+    })
   }
 
 

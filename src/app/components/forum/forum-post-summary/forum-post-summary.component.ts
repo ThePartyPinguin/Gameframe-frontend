@@ -16,7 +16,6 @@ export class ForumPostSummaryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.postDto.tags[0].tagString);
     this.postDate = new Date(this.postDto.datePosted);
   }
 

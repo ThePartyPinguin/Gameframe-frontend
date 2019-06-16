@@ -1,0 +1,9 @@
+#footer-image, #footer-image img{
+  width: 25vw;
+  height: 15vh;
+}
+.footer-link:hover{
+  color: var(--primary);
+  cursor: pointer;
+
+}

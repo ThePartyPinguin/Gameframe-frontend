@@ -11,4 +11,5 @@ export interface BasicPostDto {
   creator : User,
   datePosted : Date,
   tags : TagDto[];
+  _links : []
 }
