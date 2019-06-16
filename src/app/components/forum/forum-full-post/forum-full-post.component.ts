@@ -17,6 +17,8 @@ export class ForumFullPostComponent implements OnInit {
   postLoaded : boolean;
   postContent : string[];
   datePosted : Date;
+  followSubmit : boolean;
+  isFollowing : boolean;
 
   constructor(private route: ActivatedRoute, private postService : PostingService) { }
 
@@ -26,9 +28,13 @@ export class ForumFullPostComponent implements OnInit {
     this.postService.getPostById(+this.postId).subscribe((response) => {
       this.post = response;
       console.log(response);
-      this.postLoaded = true;
+
       this.datePosted = new Date(this.post.datePosted);
-      this.postContent = this.post.content.split("<br>")
+      this.postContent = this.post.content.split("<br>");
+
+      if(this.isAuthenticated()){
+        this.checkIsFollowing();
+      }
 
     })
   }
@@ -39,6 +45,33 @@ export class ForumFullPostComponent implements OnInit {
 
   isAuthenticated(){
     return LoginService.isAuthenticated();
+  }
+
+  followPost(){
+    this.followSubmit = true;
+    this.postService.followPost(this.post.postId).subscribe((response) => {
+      console.log(response);
+      this.checkIsFollowing();
+      this.followSubmit = false;
+    });
+  }
+
+  stopFollowingPost(){
+    this.followSubmit = true;
+    this.postService.stopFollowingPost(this.post.postId).subscribe((response) => {
+      console.log(response);
+      this.checkIsFollowing();
+      this.followSubmit = false;
+    });
+  }
+
+  checkIsFollowing(){
+    this.postService.isFollowingPost(this.post.postId).subscribe((response) => {
+      console.log(response);
+
+      this.isFollowing = response.responseMessage === 'true';
+      this.postLoaded = true;
+    });
   }
 
 }

@@ -129,5 +129,32 @@
       </div>
     </div>
   </div>
-
+</div>
+<div class="container-fluid">
+  <div class="col mt-4">
+    <div class="row">
+      <div class="col">
+        <span class="h3">Followed posts</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <hr>
+      </div>
+    </div>
+    <div class="row justify-content-center" *ngIf="!followedPostsLoaded">
+      <div class="col-auto">
+        <app-loader [loadingText]="'Loading posts'"></app-loader>
+      </div>
+    </div>
+    <div class="row" *ngIf="followedPostsLoaded">
+      <div class="col">
+        <div class="row" *ngFor="let post of followedPosts.posts">
+          <div class="col">
+            <app-forum-post-summary [postDto]="post"></app-forum-post-summary>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
