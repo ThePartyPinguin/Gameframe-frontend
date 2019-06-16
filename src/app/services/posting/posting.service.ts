@@ -7,6 +7,7 @@ import {BasicPostDto} from '../../models/dto/posting/basic-post-dto.model';
 import {FullCommentDto} from '../../models/dto/posting/full-comment-dto.model';
 import {FullPostDto} from '../../models/dto/posting/full-post-dto.model';
 import {BareResponse} from '../../models/dto/bare-response.model';
+import {PostListDto} from '../../models/dto/posting/post-list-dto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +32,11 @@ export class PostingService {
     postDto.postTitle = title;
     postDto.tagLine = tags;
 
-    return this.http.post(environment.apiUrl + "/post/private/new", postDto, {observe : 'response', headers : {'Content-Type' : 'application/json'}})
+    return this.http.post<FullPostDto>(environment.apiUrl + "/post/private/new", postDto)
   }
 
   getPostsPage(postsPerPage : number, pageNumber : number){
-    return this.http.get<BasicPostDto[]>(environment.apiUrl + "/post/public/basic?page="+pageNumber+"&perPageCount=" + postsPerPage)
+    return this.http.get<PostListDto>(environment.apiUrl + "/post/public/basic?page="+pageNumber+"&perPageCount=" + postsPerPage)
   }
 
   getPostById(id : number){

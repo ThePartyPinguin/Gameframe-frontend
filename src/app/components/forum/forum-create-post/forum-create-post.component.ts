@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PostingService} from '../../../services/posting/posting.service';
 import {validate} from 'codelyzer/walkerFactory/walkerFn';
+import {Router} from '@angular/router';
+import {BasicPostDto} from '../../../models/dto/posting/basic-post-dto.model';
 
 @Component({
   selector: 'app-forum-create-post',
@@ -19,8 +21,7 @@ export class ForumCreatePostComponent implements OnInit {
 
   submitted : boolean;
 
-
-  constructor( private postingService : PostingService) {
+  constructor( private postingService : PostingService, private router : Router) {
     this.postFormGroup = new FormGroup({
       postTitleInput: new FormControl('',
         {validators : [Validators.required]}),
@@ -55,10 +56,10 @@ export class ForumCreatePostComponent implements OnInit {
   }
 
   createNewPost(){
-
+    this.submitted = true;
     if(!this.checkFormGroup.valid){
-      console.log(this.checkFormGroup.controls);
       this.checkFormInvalid = true;
+      this.submitted = false;
       return;
     }
 
@@ -66,6 +67,7 @@ export class ForumCreatePostComponent implements OnInit {
 
     if(!this.postFormGroup.valid){
       this.postFormInvalid = true;
+      this.submitted = false;
       return;
     }
     let title = this.formControls.postTitleInput.value;
@@ -81,11 +83,10 @@ export class ForumCreatePostComponent implements OnInit {
       newContent += "<br>";
     }
 
-    console.log(newContent);
-
     this.postingService.createNewPost(title, newContent, tags).subscribe(
       (response) =>{
-        console.log(response);
+        this.submitted = false;
+        this.router.navigateByUrl('/forum/post/' + response.postId);
       }
     )
   }

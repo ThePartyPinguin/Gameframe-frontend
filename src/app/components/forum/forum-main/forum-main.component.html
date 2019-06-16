@@ -25,8 +25,13 @@
       <hr>
     </div>
   </div>
+  <div class="row justify-content-center" *ngIf="loadingPage">
+    <div class="col-auto">
+      <app-loader [loadingText]="'Loading page...'"></app-loader>
+    </div>
+  </div>
 
-  <div class="row">
+  <div class="row" *ngIf="!loadingPage">
     <div class="col">
       <div class="row" *ngFor="let post of currentPagePosts">
         <div class="col">
@@ -35,4 +40,18 @@
       </div>
     </div>
   </div>
+
+  <div class="row justify-content-center" *ngIf="!loadingPage">
+    <div class="col mt-5">
+      <div class="row justify-content-center">
+        <div class="col-auto">
+          <button class="btn btn-primary btn-sm" [disabled]="currentPage <= 0" (click)="getPreviousPage()"><< Previous page</button>
+        </div>
+        <div class="col-auto">
+          <button class="btn btn-primary btn-sm" [disabled]="currentPagePosts.length < pageSize || overRuleNextPage" (click)="getNextPage()">Next page >></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
