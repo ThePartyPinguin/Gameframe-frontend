@@ -58,7 +58,6 @@ export class ForumCreatePostComponent implements OnInit {
   createNewPost(){
     this.submitted = true;
     if(!this.checkFormGroup.valid){
-      console.log(this.checkFormGroup.controls);
       this.checkFormInvalid = true;
       this.submitted = false;
       return;
@@ -83,8 +82,6 @@ export class ForumCreatePostComponent implements OnInit {
       newContent += line;
       newContent += "<br>";
     }
-
-    console.log(newContent);
 
     this.postingService.createNewPost(title, newContent, tags).subscribe(
       (response) =>{

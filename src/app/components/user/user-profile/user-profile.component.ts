@@ -25,8 +25,6 @@ export class UserProfileComponent implements OnInit {
   tempUserProfile: UserProfile;
   updateProfileForm: FormGroup;
 
-  profileAvatarFileChanged : boolean;
-
   avatarUploadForm : FormGroup;
 
   followedPosts : UserFollowedPostsDto;
@@ -42,7 +40,6 @@ export class UserProfileComponent implements OnInit {
     if(userName == null)
     {
       this.profileService.getPrivateProfile().subscribe((response) => {
-        console.log(response);
         if(response.body.responseCode !== 200)
         {
           this.errorUpdating = true;
@@ -57,7 +54,6 @@ export class UserProfileComponent implements OnInit {
     }
     else{
       this.profileService.getPublicProfile(userName).subscribe((response) => {
-        console.log(response);
         if(response.body.responseCode !== 500)
         {
           this.errorUpdating = true;
@@ -66,8 +62,6 @@ export class UserProfileComponent implements OnInit {
         this.userProfile = response.body;
 
         const local_id = localStorage.getItem(environment.user_id);
-
-        console.log(this.userProfile.user.userId);
 
         this.privateProfile = local_id === this.userProfile.user.userId.toString();
 
@@ -108,7 +102,6 @@ export class UserProfileComponent implements OnInit {
   }
 
   saveEdit(){
-    //this.updateSubmit = true;
 
 
     if(this.updateProfileForm.invalid){
@@ -121,11 +114,7 @@ export class UserProfileComponent implements OnInit {
     this.tempUserProfile.profile.location = this.formControl.locationControl.value;
     this.tempUserProfile.profile.website = this.formControl.websiteControl.value;
     this.tempUserProfile.profile.bio = this.formControl.bioControl.value;
-    //
-    // // console.log(this.tempUserProfile)
-    // // console.log(this.formControl)
     this.userProfile = this.tempUserProfile;
-    console.log(this.userProfile);
 
 
     this.profileService.updateProfile(this.userProfile).subscribe(
@@ -157,10 +146,8 @@ export class UserProfileComponent implements OnInit {
     // let reader = new FileReader();
     if(event.target.files && event.target.files.length > 0) {
       let file = event.target.files[0];
-      console.log(file);
 
       this.fileService.uploadNewProfileAvatar(file).subscribe((response) => {
-        console.log(response);
         // this.userProfile.profile.profilePicture = response.body.imageName;
       });
     }
@@ -170,8 +157,6 @@ export class UserProfileComponent implements OnInit {
     this.followedPostsLoaded = false;
     this.profileService.getFollowedPosts().subscribe(response => {
       this.followedPosts = response;
-      console.log('followedPosts');
-      console.log(this.followedPosts);
 
       this.followedPostsLoaded = true;
     });

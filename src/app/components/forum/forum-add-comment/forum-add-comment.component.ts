@@ -36,10 +36,6 @@ export class ForumAddCommentComponent implements OnInit {
     return this.commentForm.controls;
   }
 
-  get validAnswerLength(){
-    return this.commentFormControls.answerControl.value.toString().length > this.minCharsAnswer;
-  }
-
   get answerLength(){
     return this.commentFormControls.answerControl.value.toString().length
   }

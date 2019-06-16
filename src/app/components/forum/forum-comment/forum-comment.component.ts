@@ -19,7 +19,6 @@ export class ForumCommentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.fullCommentDto);
     this.dateCommented = new Date(this.fullCommentDto.comment.dateCreated)
 
     this.commentLines = this.fullCommentDto.comment.commentContent.split("<br>")
