@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {environment} from '../../../environments/environment';
 import {UserProfile} from '../../models/dto/user-dto/user-profile';
+import {UserFollowedPostsDto} from '../../models/dto/posting/user-followed-posts-dto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class ProfileService {
 
   updateProfile(userProfile : UserProfile){
     return this.http.put<UserProfile>(environment.apiUrl + '/profile/private/update', {user: userProfile.user, profile: userProfile.profile}, {observe : 'response'});
+  }
+
+  getFollowedPosts(){
+    return this.http.get<UserFollowedPostsDto>(environment.apiUrl + '/post/private/follow/me');
   }
 
 

@@ -11,6 +11,16 @@
     <div class="col-auto">
       <span class="h1">{{post.title}}</span>
     </div>
+    <div class="col" *ngIf="isAuthenticated()">
+      <div class="row">
+        <div class="col" *ngIf="!isFollowing">
+          <button class="float-right btn btn-primary" (click)="followPost()" [disabled]="followSubmit">Follow this post</button>
+        </div>
+        <div class="col" *ngIf="isFollowing" (click)="stopFollowingPost()">
+          <button class="float-right btn btn-primary" [disabled]="followSubmit">Stop following this post</button>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col">
